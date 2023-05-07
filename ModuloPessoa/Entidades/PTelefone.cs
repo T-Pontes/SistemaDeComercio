@@ -33,10 +33,10 @@ namespace ModuloPessoa.Entidades
 
         public override string ToString()
         {
-            return $"   Id: {Id}{Environment.NewLine}" +
-                   $"   Tipo de Telefone: {Tipo}{Environment.NewLine}" +
-                   $"   Número: {Numero}{Environment.NewLine}" +
-                   $"   WhatsApp?: {WhatsApp}";
+            return $"       Id: {Id}{Environment.NewLine}" +
+                   $"       Tipo de Telefone: {Tipo}{Environment.NewLine}" +
+                   $"       Número: {Numero}{Environment.NewLine}" +
+                   $"       WhatsApp?: {WhatsApp}";
         }
     }
 }

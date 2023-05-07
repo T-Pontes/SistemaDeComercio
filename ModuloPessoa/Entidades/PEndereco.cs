@@ -37,14 +37,14 @@
 
         public override string ToString()
         {
-            return $"   Id: {Id}{Environment.NewLine}" +
-                   $"   CEP: {Cep}{Environment.NewLine}" +
-                   $"   Logradouro: {Logradouro}{Environment.NewLine}" +
-                   $"   Numero: {Numero}{Environment.NewLine}" +
-                   $"   Complemento: {Complemento}{Environment.NewLine}" +
-                   $"   Bairro: {Bairro}{Environment.NewLine}" +
-                   $"   Cidade: {Cidade.Descricao}{Environment.NewLine}" +
-                   $"   UF: {Cidade.Estado.Descricao}";
+            return $"       Id: {Id}{Environment.NewLine}" +
+                   $"       CEP: {Cep}{Environment.NewLine}" +
+                   $"       Logradouro: {Logradouro}{Environment.NewLine}" +
+                   $"       Numero: {Numero}{Environment.NewLine}" +
+                   $"       Complemento: {Complemento}{Environment.NewLine}" +
+                   $"       Bairro: {Bairro}{Environment.NewLine}" +
+                   $"       Cidade: {Cidade.Descricao}{Environment.NewLine}" +
+                   $"       UF: {Cidade.Estado.Descricao}";
         }
     }
 }
