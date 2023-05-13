@@ -99,8 +99,30 @@ namespace SistemaTeste
 
         private static void ImprimirMovimentos()
         {
-            Console.WriteLine($"Movimentos:{Environment.NewLine}");
-            foreach(EMovimento m in Movimentos(Produtos()))
+            //Console.WriteLine($"#################################################################{Environment.NewLine}" +
+            //                  $"Registro de Movimentos:{Environment.NewLine}" +
+            //                  $"1. Novo movimento;       X. Fechar movimentos{Environment.NewLine}" +
+            //                  $"#################################################################{Environment.NewLine}");
+            //List<EMovimento> Movimentos = new();
+            //EProduto Produto = produtos.Where(x => x.Id.Equals(Console.ReadLine())).First();
+            //double Qtde = Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine($"Qual o tipo de movimento?{Environment.NewLine}" +
+            //                  $"1. Entrada;     2. Saída       X. Fechar movimentos{Environment.NewLine}");
+            //string? tipo = Console.ReadLine();
+            //GTipoMovimento TipoMovimento = GTipoMovimento.ENTRADA;
+            //switch (tipo)
+            //{
+            //    case "1":
+            //        TipoMovimento = GTipoMovimento.ENTRADA;
+            //    break;
+            //    case "2":
+            //        TipoMovimento = GTipoMovimento.SAIDA;
+            //    break;
+            //}
+
+            //EMovimento Movimento = new(1, 25.40 ,Qtde ,Produto, TipoMovimento);
+
+            foreach (EMovimento m in Movimentos(Produtos()))
             {
                 Console.WriteLine(m.ToString() + Environment.NewLine);
             }
@@ -170,10 +192,10 @@ namespace SistemaTeste
 
         private static List<EMovimento> Movimentos(List<EProduto> produtos)
         {
-            EMovimento m1 = new(1, 56.20, 0.300, produtos.Where(x => x.Id.Equals(1)).First(), GTipoMovimento.SAIDA);
-            EMovimento m2 = new(2, 3.60, 4, produtos.Where(x => x.Id.Equals(2)).First(), GTipoMovimento.SAIDA);
-            EMovimento m3 = new(3, 2.80, 50, produtos.Where(x => x.Id.Equals(2)).First(), GTipoMovimento.ENTRADA);
-            EMovimento m4 = new(4, 74.50, 1.400, produtos.Where(x => x.Id.Equals(3)).First(), GTipoMovimento.SAIDA);
+            EMovimento m1 = new(1, 56.20, 0.300, Convert.ToDateTime("02/06/2022"), produtos.Where(x => x.Id.Equals(1)).First(), GTipoMovimento.SAIDA);
+            EMovimento m2 = new(2, 3.60, 4, Convert.ToDateTime("01/01/2023"), produtos.Where(x => x.Id.Equals(2)).First(), GTipoMovimento.SAIDA);
+            EMovimento m3 = new(3, 2.80, 50, Convert.ToDateTime("07/02/2023"), produtos.Where(x => x.Id.Equals(2)).First(), GTipoMovimento.ENTRADA);
+            EMovimento m4 = new(4, 74.50, 1.400, Convert.ToDateTime("13/05/2023"), produtos.Where(x => x.Id.Equals(3)).First(), GTipoMovimento.SAIDA);
 
             return new() { m1, m2, m3, m4 };
         }
