@@ -1,4 +1,5 @@
 ﻿using ModuloGlobal.Enums;
+using ModuloInfra.Entidades;
 using ModuloPessoa.Entidades;
 using System.Drawing;
 using System.Globalization;
@@ -15,8 +16,9 @@ namespace ModuloEstoque.Entidades
 
         public EProduto Produto { get; set; }
         public GTipoMovimento Tipo { get; set; }
+        public InfEstabelecimento Loja { get; set; }
 
-        public EMovimento(int id, double precoUnitario, double quantidade, DateTime data, EProduto produto, GTipoMovimento tipo)
+        public EMovimento(int id, double precoUnitario, double quantidade, DateTime data, EProduto produto, GTipoMovimento tipo, InfEstabelecimento loja)
         {
             Id = id;
             PrecoUnitario = precoUnitario;
@@ -24,6 +26,7 @@ namespace ModuloEstoque.Entidades
             Data = data;
             Produto = produto;
             Tipo = tipo;
+            Loja = loja;
         }
 
         public override bool Equals(object? obj)
@@ -40,13 +43,14 @@ namespace ModuloEstoque.Entidades
         public override string ToString()
         {
             return $"       Id: {Id}{Environment.NewLine}" +
-                   $"       Preço Unitário: {string.Format(CultureInfo.GetCultureInfo("pt-BR"), "R$ {0:#,###.##}", PrecoUnitario)}{Environment.NewLine}" +
-                   $"       Quantidade: {Quantidade}{Environment.NewLine}" +
-                   $"       Data: {Data}{Environment.NewLine}" +
                    $"       Produto: {Produto.Descricao}{Environment.NewLine}" +
                    $"       Categora: {Produto.Categoria.Descricao}{Environment.NewLine}" +
+                   $"       Preço Unitário: {string.Format(CultureInfo.GetCultureInfo("pt-BR"), "R$ {0:#,###.##}", PrecoUnitario)}({Produto.Unidade.Abreviacao}){Environment.NewLine}" +
+                   $"       Quantidade: {Quantidade}{Produto.Unidade.Abreviacao}{Environment.NewLine}" +
                    $"       Total: {string.Format(CultureInfo.GetCultureInfo("pt-BR"), "R$ {0:#,###.##}", PrecoUnitario * Quantidade)}{Environment.NewLine}" +
-                   $"       Tipo de movimento: {Tipo}";
+                   $"       Data: {Data}{Environment.NewLine}" +
+                   $"       Tipo de movimento: {Tipo}{Environment.NewLine}" +
+                   $"       Loja: {Loja.Pessoa.Nome}";
         }
     }
 }

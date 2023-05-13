@@ -9,10 +9,9 @@ namespace ModuloInfra.Entidades
         public int PessoaId { get; set; }
         public PPessoa Pessoa { get; set; }
 
-        public InfEstabelecimento(bool matriz, int pessoaId, PPessoa pessoa)
+        public InfEstabelecimento(bool matriz, PPessoa pessoa)
         {
             Matriz = matriz;
-            PessoaId = pessoaId;
             Pessoa = pessoa;
         }
 
