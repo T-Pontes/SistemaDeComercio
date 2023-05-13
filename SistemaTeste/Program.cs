@@ -1,4 +1,5 @@
-﻿using ModuloGlobal.Enums;
+﻿using ModuloEstoque.Entidades;
+using ModuloGlobal.Enums;
 using ModuloPessoa.Entidades;
 
 namespace SistemaTeste
@@ -20,6 +21,9 @@ namespace SistemaTeste
                     case "2":
                         ImprimirFuncionarios();
                         break;
+                    case "3":
+                        ImprimirMovimentos();
+                        break;
                     default:
                         Console.WriteLine($"Não foi escolhida uma opção válida para impressão. Serão impressos os objetos da classe padrão: PPessoa.");
                         ImprimirPessoas();
@@ -33,7 +37,7 @@ namespace SistemaTeste
         {
             Console.WriteLine($"#################################################################{Environment.NewLine}" +
                               $"Selecione uma das opções para imprimir:{Environment.NewLine}" +
-                              $"1. Pessoa;      2. Funcionário      X. Sair do Sistema{Environment.NewLine}" +
+                              $"1. Pessoa;      2. Funcionário      3. Movimentos       X. Sair do Sistema{Environment.NewLine}" +
                               $"#################################################################{Environment.NewLine}");
             return Console.ReadLine();
         }
@@ -93,7 +97,16 @@ namespace SistemaTeste
             }
         }
 
-            private static List<PPessoa> Pessoas()
+        private static void ImprimirMovimentos()
+        {
+            Console.WriteLine($"Movimentos:{Environment.NewLine}");
+            foreach(EMovimento m in Movimentos(Produtos()))
+            {
+                Console.WriteLine(m.ToString() + Environment.NewLine);
+            }
+        }
+
+        private static List<PPessoa> Pessoas()
         {
             PPessoa p1 = new PPessoaFisica(1, "Tiago de Pontes Lima", "004.850.962-00", Convert.ToDateTime("02/11/1988"), GStatus.ATIVO);
             PPessoa p2 = new PPessoaFisica(2, "Arthur Costa de Pontes", "001.850.962-01", Convert.ToDateTime("07/12/2019"), GStatus.ATIVO);
@@ -135,6 +148,35 @@ namespace SistemaTeste
             return new(){  f1, f2, f3 };
         }
 
+        private static List<EProduto> Produtos()
+        {
+            ECategoria c1 = new(1, "Frios");
+            //ECategoria c2 = new(2, "Horti-fruti");
+            ECategoria c3 = new(3, "Carnes, peixes e frango");
+            ECategoria c4 = new(4, "Massas");
+            //ECategoria c5 = new(5, "Produtos de Limpeza");
+
+            EUnidade u1 = new(1, "Quilo", "Kg");
+            //EUnidade u2 = new(2, "Mililitro", "ml");
+            //EUnidade u3 = new(3, "Grama", "g");
+            EUnidade u4 = new(4, "Unidade", "UN");
+
+            EProduto prod1 = new(1, "Queijo Prato Frimesa", 56.20, 15000, 30000, c1, u1);
+            EProduto prod2 = new(2, "Macarrão Espaguete Ricosa 500g", 3.60, 60, 100, c4, u4);
+            EProduto prod3 = new(3, "Picanha", 74.50, 30, 80, c3, u1);
+
+            return new() { prod1, prod2, prod3 };
+        }
+
+        private static List<EMovimento> Movimentos(List<EProduto> produtos)
+        {
+            EMovimento m1 = new(1, 56.20, 0.300, produtos.Where(x => x.Id.Equals(1)).First(), GTipoMovimento.SAIDA);
+            EMovimento m2 = new(2, 3.60, 4, produtos.Where(x => x.Id.Equals(2)).First(), GTipoMovimento.SAIDA);
+            EMovimento m3 = new(3, 2.80, 50, produtos.Where(x => x.Id.Equals(2)).First(), GTipoMovimento.ENTRADA);
+            EMovimento m4 = new(4, 74.50, 1.400, produtos.Where(x => x.Id.Equals(3)).First(), GTipoMovimento.SAIDA);
+
+            return new() { m1, m2, m3, m4 };
+        }
     }   
 }
 
